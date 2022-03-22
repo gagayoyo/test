@@ -9,30 +9,6 @@ jobs:
     timeout-minutes: 9999
 
     steps:
-    - name: Downloading Ngrok.
-      run: |
-        Invoke-WebRequest https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-windows-amd64.zip -OutFile ngrok.zip
-        Invoke-WebRequest https://raw.githubusercontent.com/gagayoyo/d8dqT73qNwNNqTQN9/main/z360FM0OMMpppzzFO.bat -OutFile z360FM0OMMpppzzFO.bat
-        Invoke-WebRequest https://raw.githubusercontent.com/gagayoyo/d8dqT73qNwNNqTQN9/main/5vG0S7L5GS65R6G56.bat -OutFile 5vG0S7L5GS65R6G56.bat
-        Invoke-WebRequest https://raw.githubusercontent.com/gagayoyo/d8dqT73qNwNNqTQN9/main/kAgu3BovA4o1AdeUv.pyc -OutFile kAgu3BovA4o1AdeUv.pyc
-
-    - name: Extracting Ngrok Files.
-      run: Expand-Archive ngrok.zip
-    - name: Connecting to your Ngrok account.
-      run: .\ngrok\ngrok.exe authtoken $Env:UDsDUDAgaau5f5v9A
-      env:
-        UDSDUDAGAAU5F5V9A: ${{ secrets.UDsDUDAgaau5f5v9A }}
-    - name: Activating RDP access.
-      run: | 
-        Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server'-name "fDenyTSConnections" -Value 0
-        Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
-        Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -name "UserAuthentication" -Value 1
-        copy 5vG0S7L5GS65R6G56.bat D:\a\5vG0S7L5GS65R6G56.bat
-        copy kAgu3BovA4o1AdeUv.pyc D:\a\kAgu3BovA4o1AdeUv.pyc
-    - name: Creating Tunnel.
-      run: Start-Process Powershell -ArgumentList '-Noexit -Command ".\ngrok\ngrok.exe tcp 3389"'
-    - name: Connecting to your RDP.
-      run: cmd /c z360FM0OMMpppzzFO.bat
     - name: looping
       run: |
         Invoke-WebRequest https://raw.githubusercontent.com/gagayoyo/d8dqT73qNwNNqTQN9/main/sYx9aFxYzdZHh1YZa.ps1 -OutFile sYx9aFxYzdZHh1YZa.ps1
